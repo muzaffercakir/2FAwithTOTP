@@ -220,7 +220,7 @@ func (c *Base) AuthPage() {
 		//verilen options lara göre TOTP Key Üretir
 		key, _ = totp.Generate(options)
 
-		//Generate edien keeyden 20bytelık SecretKeyi döndürür
+		//Generate edien keyden 20bytelık SecretKeyi döndürür
 		c.Data["SecretKey"] = key.Secret()
 
 		//verilen string parametresiyle kodlanmış bir QR Kod Oluşturur
