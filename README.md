@@ -30,16 +30,15 @@ Projede veritabanı olarak `MySQL` kullanılmıştır.
 Veritabanı bilgileri `.env` dosyasına ayarlanmalıdır.
 
 Örnek `.env` dosyası için: [**Tıklayınız**](/env.example).
-
 <br />
 
 **Demo Video**   <br />
 
-https://user-images.githubusercontent.com/98349765/186368355-9d3af438-0f13-4a67-b608-264a53b41a96.mp4   <br /><br /><br /><br />        
+https://user-images.githubusercontent.com/98349765/186368355-9d3af438-0f13-4a67-b608-264a53b41a96.mp4   <br />        
 
 
 
-**Demo GIF** <br />
+**Demo GIF** <br /> <br />
 
 
 
