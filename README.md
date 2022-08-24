@@ -24,8 +24,10 @@ go get github.com/muzaffercakir/2FAwithTOTP
 Projede veritabanı olarak `MySQL` kullanılmıştır.
 `otpauth` adlı bir veritabanı oluşturulmuştur.
 Veritabanı bilgileri `.env` dosyasına ayarlanmalıdır.
-Örnek `.env` dosyası için: [**Tıklayınız**](/env.sample).
+Örnek `.env` dosyası için: [**Tıklayınız**](/env.example).
 
 **Demo**
+
+
 
 ![demo-gif](https://user-images.githubusercontent.com/98349765/186287802-f51490f6-33ea-4614-94b2-97ef0be6763c.gif)
