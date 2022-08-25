@@ -35,6 +35,8 @@ var totpCheckflag bool //2fa key girildikten sonra yapılan Post isteğinden son
 
 var key *otp.Key //Farklı metodlarda doğrulama yapılırken aynı userın TOTP SecretKeyi değişmemesi için tanımlanan global değişken
 
+var tempSecretKey string //Eşleştirme yapılırken şifre yanlış girilirse yapılan posttan sonra yeni secret key üretilmemesi için tanımlandı
+
 func (c *Base) NestPrepare() {
 
 	c.User = c.getUser()
@@ -222,6 +224,7 @@ func (c *Base) AuthPage() {
 
 		//Generate edien keyden 20bytelık SecretKeyi döndürür
 		c.Data["SecretKey"] = key.Secret()
+		tempSecretKey = key.Secret()
 
 		//verilen string parametresiyle kodlanmış bir QR Kod Oluşturur
 		qrCode, _ := qr.Encode(key.String(), qr.L, qr.Auto)
@@ -239,6 +242,10 @@ func (c *Base) AuthPage() {
 
 		totpCheckflag = true
 	}
+
+	c.Data["TotpCheckFlag"] = totpCheckflag
+
+	c.Data["TempSecretKey"] = tempSecretKey
 
 	if !c.Ctx.Input.IsPost() {
 		return
@@ -266,17 +273,21 @@ func (c *Base) AuthPage() {
 				}
 				totpCheckflag = false
 				validateFlag = true
+				c.Data["ValidateFlag"] = validateFlag
+
 				flash.Success("(✓) 2FA Başarıyla Etkinleştirildi.")
 				flash.Store(&c.Controller)
 				c.Redirect(c.URLFor("Base.Admin"), 303)
 				break
 			} else {
+				c.Data["ValidateFlag"] = validateFlag
 
 				flash.Error("Geçersiz Kod!")
 				flash.Store(&c.Controller)
 				return
 
 			}
+
 		}
 
 	} else {
