@@ -13,13 +13,13 @@
     <div>
         <p>{{.CreateAuth.Email}}</p>
         İki Faktörlü Doğrulama(2FA) = <strong>{{if .User.IsOtpActive}}Aktif{{else}}Pasif{{end}}</strong>
-        <p>(!) Yetkilendirme İstemcinizi(Google Authenticator v.b) ayarlamak için kullanabileceğiniz kodunuz:</p>
+        <p>(!) Yetkilendirme İstemcinizi(Google Authenticator v.b) ayarlamak için kullanabileceğiniz kurulum anahtarınız:</p>
         {{if .TotpCheckFlag}}
             <strong>{{.TempSecretKey}}</strong>
         {{else}}
             <strong>{{.SecretKey}}</strong>
         {{end}}    
-        <p>(!) Kodu manuel olarak girmek istemiyorsanız aşağıdaki QR Kodu okutun.</p>
+        <p>(!) Kurulum anahtarını manuel olarak girmek istemiyorsanız aşağıdaki QR Kodu okutun.</p>
         <img class="text-white" src="/static/img/qrcode.png" alt="QR Code Barkod" > 
     </div>
     <div>

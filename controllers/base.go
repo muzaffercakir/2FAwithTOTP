@@ -40,6 +40,7 @@ var tempSecretKey string //Eşleştirme yapılırken şifre yanlış girilirse y
 func (c *Base) NestPrepare() {
 
 	c.User = c.getUser()
+
 	c.Data["User"] = c.User
 
 }
@@ -127,6 +128,7 @@ func (c *Base) Index() {
 		c.Redirect(c.URLFor("Base.Admin"), 303)
 
 	} else if err == nil {
+
 		c.SetSession("user", users.Id)
 		fmt.Println("Doğrulama sayfasına yönlendiriliyorsunuz.")
 		c.Redirect(c.URLFor("Base.LoginAuthPage"), 303)
@@ -141,6 +143,13 @@ func (c *Base) Admin() {
 		c.Redirect(c.URLFor("Base.Index"), 303)
 		return
 	}
+
+	// fmt.Println("c.IsLogin", c.IsLogin)
+
+	// if c.IsLogin && !c.User.IsOtpActive && c.URLFor("Base.Admin") != c.Ctx.Request.RequestURI {
+	// 	c.Redirect(c.URLFor("Base.Admin"), 303)
+	// 	return
+	// }
 
 	c.Data["User"] = c.User
 	c.TplName = "admin.tpl"
@@ -203,6 +212,13 @@ func (c *Base) Create() {
 
 //Authenticator istemcileriyle ilk eşleştirme yapılırken kullanılır
 func (c *Base) AuthPage() {
+
+	c.IsLogin = c.GetSession("user") != nil
+
+	if !c.IsLogin && c.URLFor("Base.Index") != c.Ctx.Request.RequestURI {
+		c.Redirect(c.URLFor("Base.Index"), 303)
+		return
+	}
 
 	c.Data["CreateAuth"] = c.User
 
@@ -301,6 +317,30 @@ func (c *Base) AuthPage() {
 
 //2FA aktif ise OTP ile Login olmayı sağlar
 func (c *Base) LoginAuthPage() {
+
+	c.IsLogin = c.GetSession("user") != nil
+	if !c.IsLogin && c.URLFor("Base.Index") != c.Ctx.Request.RequestURI {
+		c.Redirect(c.URLFor("Base.Index"), 303)
+		return
+	}
+
+	if c.IsLogin && !c.User.IsOtpActive && c.URLFor("Base.Admin") != c.Ctx.Request.RequestURI {
+		c.Redirect(c.URLFor("Base.Admin"), 303)
+		return
+	}
+
+	// if !c.IsLogin && c.URLFor("Base.Index") != c.Ctx.Request.RequestURI {
+	// 	c.Redirect(c.URLFor("Base.Index"), 303)
+	// 	return
+	// }
+
+	// fmt.Println("c.IsLogin",c.IsLogin)
+
+	// if c.IsLogin && !c.User.IsOtpActive && c.URLFor("Base.Index") != c.Ctx.Request.RequestURI {
+	// 	c.Redirect(c.URLFor("Base.Admin"), 303)
+	// 	return
+	// }
+
 	c.Data["LoginAuth"] = c.User
 
 	c.TplName = "loginauth.tpl"
