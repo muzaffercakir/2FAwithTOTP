@@ -123,7 +123,7 @@ func (c *Base) Index() {
 
 	if err := o.Filter("Email", email).Filter("IsOtpActive", true).One(users); err != nil {
 		c.SetSession("user", users.Id)
-		flash.Success("Giriş Başarılı.2FA Devre Dışı.")
+		flash.Success("Giriş Başarılı. 2FA Devre Dışı.")
 		flash.Store(&c.Controller)
 		c.Redirect(c.URLFor("Base.Admin"), 303)
 
@@ -143,13 +143,6 @@ func (c *Base) Admin() {
 		c.Redirect(c.URLFor("Base.Index"), 303)
 		return
 	}
-
-	// fmt.Println("c.IsLogin", c.IsLogin)
-
-	// if c.IsLogin && !c.User.IsOtpActive && c.URLFor("Base.Admin") != c.Ctx.Request.RequestURI {
-	// 	c.Redirect(c.URLFor("Base.Admin"), 303)
-	// 	return
-	// }
 
 	c.Data["User"] = c.User
 	c.TplName = "admin.tpl"
@@ -204,7 +197,7 @@ func (c *Base) Create() {
 		c.Abort("500")
 		return
 	}
-	flash.Success("(✓) Üyeliğiniz Başarıyla Gerçekleşti.Profilinize Giriş Yapabilirsiniz.")
+	flash.Success("(✓) Üyeliğiniz Başarıyla Gerçekleşti. Profilinize Giriş Yapabilirsiniz.")
 	flash.Store(&c.Controller)
 	c.Redirect(c.URLFor("Base.Login"), 303)
 

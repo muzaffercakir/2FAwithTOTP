@@ -2,7 +2,7 @@
 
 Bu projede; Google Authenticator gibi doğrulama sağlayan istemcilerden alınan tek seferlik şifreler ile 2 faktörlü doğrulama kullanılarak Login-Logout işlemleri yapılmıştır.
 
-UI tasarımına odaklanılmamıştır.
+UI tasarımına derinlemesine odaklanılmamıştır.
 
 Geliştirilmeye devam edildikçe güncellenecektir.
 
@@ -34,7 +34,7 @@ Veritabanı bilgileri `.env` dosyasına ayarlanmalıdır.
 
 **Demo Video**   <br />
 
-https://user-images.githubusercontent.com/98349765/186368355-9d3af438-0f13-4a67-b608-264a53b41a96.mp4   <br />        
+https://user-images.githubusercontent.com/98349765/186845725-3a537b8d-dc1b-42c3-85f7-013c2c82f821.mp4   <br />        
 
 
 
@@ -42,4 +42,4 @@ https://user-images.githubusercontent.com/98349765/186368355-9d3af438-0f13-4a67-
 
 
 
-![demo-gif](https://user-images.githubusercontent.com/98349765/186287802-f51490f6-33ea-4614-94b2-97ef0be6763c.gif)
+![demo-gif2](https://user-images.githubusercontent.com/98349765/186845825-8d4fafc9-5027-4cf1-a701-f4f51fbd4dc3.gif)
